@@ -9,6 +9,7 @@ public class CarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, speed * Time.deltaTime, 0);
+        float dt=Time.deltaTime;
+        transform.Translate(1* dt, speed * dt, 0);
     }
 }
