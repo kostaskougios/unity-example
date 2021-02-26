@@ -14,7 +14,17 @@ public class CarScript : MonoBehaviour
     void Update()
     {
         float dt = Time.deltaTime;
-        transform.Translate(1 * dt, speed * dt, 0);
-        transform.Rotate(0, 0, rotateSpeed * dt);
+        float forward = 0;
+
+        if (Input.GetKey(KeyCode.W)) forward = speed * dt;
+        if (Input.GetKey(KeyCode.S)) forward = -speed * dt;
+
+        float turn = 0;
+
+        if (Input.GetKey(KeyCode.A)) turn = -rotateSpeed * dt;
+        if (Input.GetKey(KeyCode.D)) turn = +rotateSpeed * dt;
+
+        transform.Translate(0, forward, 0);
+        transform.Rotate(0, 0, turn);
     }
 }
