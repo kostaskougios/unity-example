@@ -17,13 +17,19 @@ public class CarScript : MonoBehaviour
         float dt = Time.deltaTime;
         float maxSpeed = maxSpeedMilesPerHour / 2000;
 
-        if (Input.GetKey(KeyCode.W)) currentSpeed += dt;
-        else if (Input.GetKey(KeyCode.S)) currentSpeed -= dt;
-        else if (currentSpeed > 0) currentSpeed -= dt; else if (currentSpeed < 0) currentSpeed += dt;
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
+        print(vertical);
+        if (vertical != 0) currentSpeed += dt * vertical;
+        else if (Input.GetKey(KeyCode.W)) currentSpeed += dt;
+        else if (Input.GetKey(KeyCode.S)) currentSpeed -= dt;
+        else {
+            if (currentSpeed > 0) currentSpeed -= dt; else if (currentSpeed < 0) currentSpeed += dt;
+            if (Mathf.Abs(currentSpeed) < dt) currentSpeed = 0;
+        }
         if (currentSpeed > maxSpeed) currentSpeed = maxSpeed;
-        if (currentSpeed < -maxSpeed) currentSpeed = 0;
-        if (Mathf.Abs(currentSpeed) < dt) currentSpeed = 0;
+        if (currentSpeed < -maxSpeed) currentSpeed = -maxSpeed;
 
         float turn = 0;
 
