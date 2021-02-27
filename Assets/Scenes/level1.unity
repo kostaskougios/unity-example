@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7cc51ed2a65bf4dbb22f3aa21adbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeedMilesPerHour: 100
+  maxSpeedMilesPerHour: 200
   rotateSpeed: 80
 --- !u!43 &355999520
 Mesh:

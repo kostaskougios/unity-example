@@ -33,6 +33,7 @@ public class CarScript : MonoBehaviour
 
         float turn = 0;
 
+        turn = horizontal * rotateSpeed * dt;
         if (Input.GetKey(KeyCode.A)) turn = -rotateSpeed * dt;
         if (Input.GetKey(KeyCode.D)) turn = +rotateSpeed * dt;
 
