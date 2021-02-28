@@ -6,9 +6,12 @@ public class BulletMoving : MonoBehaviour
 {
     [SerializeField] float speed = 10;
 
+    float activeTime = 0;
     void Update()
     {
-        float dt = Time.deltaTime;
+        var dt = Time.deltaTime;
         transform.Translate( speed * dt, 0,0);
+        activeTime += dt;
+        if(activeTime>3) Destroy(gameObject);
     }
 }
