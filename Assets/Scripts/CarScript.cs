@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour
 {
-    [SerializeField]
-    float maxSpeedMilesPerHour = 100;
+    [SerializeField] float maxSpeedMilesPerHour = 100;
 
-    [SerializeField]
-    float rotateSpeed = 20;
+    [SerializeField] float rotateSpeed = 20;
 
     float currentSpeed = 0;
-    // Update is called once per frame
+
     void Update()
     {
         float dt = Time.deltaTime;
@@ -20,7 +18,6 @@ public class CarScript : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        print(vertical);
         if (vertical != 0) currentSpeed += dt * vertical;
         else if (Input.GetKey(KeyCode.W)) currentSpeed += dt;
         else if (Input.GetKey(KeyCode.S)) currentSpeed -= dt;
