@@ -10,8 +10,8 @@ public class BulletMoving : MonoBehaviour
     void Update()
     {
         var dt = Time.deltaTime;
-        transform.Translate( speed * dt, 0,0);
+        transform.Translate(speed * dt, 0, 0);
         activeTime += dt;
-        if(activeTime>3) Destroy(gameObject);
+        if (activeTime > 3) Destroy(gameObject);
     }
 }
