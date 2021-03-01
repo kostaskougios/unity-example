@@ -8,7 +8,7 @@ public class BulletMoving : MonoBehaviour
     [SerializeField] float speed = 10;
     [SerializeField] float destroyAfter = 2;
 
-    void Update()
+    private void Update()
     {
         var dt = Time.deltaTime;
         transform.Translate(speed * dt, 0, 0);
