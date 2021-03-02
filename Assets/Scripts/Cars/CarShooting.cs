@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CarShooting : MonoBehaviour
 {
-    [SerializeField] GameObject bullet;
-    [SerializeField] GameObject shootPoint;
+    public GameObject bullet;
+    public GameObject shootPoint;
 
     void Update()
     {

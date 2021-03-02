@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class BulletMoving : MonoBehaviour
 {
-    [SerializeField] float speed = 10;
-    [SerializeField] float destroyAfter = 2;
+    public float speed = 10;
+    public float destroyAfter = 2;
 
-    private void Update()
+    void Update()
     {
         var dt = Time.deltaTime;
         transform.Translate(speed * dt, 0, 0);
     }
 
-    private void Start()
+    void Start()
     {
         Destroy(gameObject, destroyAfter);
     }

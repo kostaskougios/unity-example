@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CarScript : MonoBehaviour
 {
-    [SerializeField] float maxSpeedMilesPerHour = 100;
+    public float maxSpeedMilesPerHour = 100;
 
-    [SerializeField] float rotateSpeed = 20;
+    public float rotateSpeed = 20;
 
-    float currentSpeed = 0;
+    private float currentSpeed = 0;
 
     void Update()
     {
