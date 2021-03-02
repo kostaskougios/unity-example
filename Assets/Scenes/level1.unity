@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7cc51ed2a65bf4dbb22f3aa21adbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeedMilesPerHour: 80
-  rotateSpeed: 80
+  maxSpeedMilesPerHour: 120
+  rotateSpeed: 100
 --- !u!114 &264355612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followMe: {fileID: 264355606}
-  turnSpeed: 4
+  turnSpeed: 14
 --- !u!1 &1392718001
 GameObject:
   m_ObjectHideFlags: 0
