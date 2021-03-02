@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Camera
 {
@@ -21,7 +22,11 @@ namespace Camera
 
         void LateUpdate()
         {
-            offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
+            var gamepad = Gamepad.current;
+
+            var dt = Time.deltaTime;
+            var dx = gamepad?.rightStick.ReadValue().x * dt * 10 ?? 0f;
+            offset = Quaternion.AngleAxis(dx * turnSpeed, Vector3.up) * offset;
             var position = player.position;
             transform.position = position + offset;
             transform.LookAt(position);

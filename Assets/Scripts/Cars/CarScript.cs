@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Cars
 {
@@ -15,23 +16,26 @@ namespace Cars
             float dt = Time.deltaTime;
             float maxSpeed = maxSpeedMilesPerHour / 2000;
 
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
+            var gamepad = Gamepad.current;
+            
+            float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed;
+            float vertical = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * maxSpeedMilesPerHour;
 
-            if (vertical != 0) currentSpeed += dt * vertical;
-            else if (Input.GetKey(KeyCode.W)) currentSpeed += dt;
-            else if (Input.GetKey(KeyCode.S)) currentSpeed -= dt;
+            if (vertical != 0)
+            {
+                currentSpeed += dt * vertical;
+            }
             else
             {
-                if (currentSpeed > 0) currentSpeed -= dt; else if (currentSpeed < 0) currentSpeed += dt;
+                if (currentSpeed > 0) currentSpeed -= dt;
+                else if (currentSpeed < 0) currentSpeed += dt;
                 if (Mathf.Abs(currentSpeed) < dt) currentSpeed = 0;
             }
+
             if (currentSpeed > maxSpeed) currentSpeed = maxSpeed;
             else if (currentSpeed < -maxSpeed) currentSpeed = -maxSpeed;
 
             var turn = horizontal * rotateSpeed * dt;
-            if (Input.GetKey(KeyCode.A)) turn = -rotateSpeed * dt;
-            if (Input.GetKey(KeyCode.D)) turn = rotateSpeed * dt;
 
             transform.Translate(0, currentSpeed, 0);
             transform.Rotate(0, 0, turn);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Cars
 {
@@ -9,13 +10,14 @@ namespace Cars
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            var gamepad = Gamepad.current;
+
+            if (gamepad?.aButton.wasPressedThisFrame ?? false)
             {
                 var b = Instantiate(bullet);
                 b.transform.position = shootPoint.transform.position;
                 b.transform.rotation = shootPoint.transform.rotation;
             }
-
         }
     }
 }
