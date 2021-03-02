@@ -7,14 +7,24 @@ namespace Camera
  */
     public class CameraFollowMe : MonoBehaviour
     {
-        [SerializeField] private GameObject followMe;
+        public GameObject followMe;
+        public float turnSpeed = 4.0f;
 
-        private float i = 0;
-        void Update()
+        private Vector3 offset;
+        private Transform player;
+
+        void Start()
         {
-            var position = followMe.transform.position;
-            i += 0.2f;
-            transform.position = new Vector3(position.x + 20, position.y + 10, position.z + 15 );
+            player = followMe.transform;
+            offset = new Vector3(12, 12, 12);
+        }
+
+        void LateUpdate()
+        {
+            offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
+            var position = player.position;
+            transform.position = position + offset;
+            transform.LookAt(position);
         }
     }
 }
