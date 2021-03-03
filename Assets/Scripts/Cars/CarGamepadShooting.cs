@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Cars
 {
-    public class CarShooting : MonoBehaviour
+    public class CarGamepadShooting : MonoBehaviour
     {
         public GameObject bullet;
         public GameObject shootPoint;
