@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Cars
 {
-    public class CarScript : MonoBehaviour
+    public class CarGamepadMovement : MonoBehaviour
     {
         public float maxSpeedMilesPerHour = 100;
 
