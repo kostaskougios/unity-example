@@ -10,7 +10,10 @@ namespace Model
 
     public static class MovementListener
     {
-        public static void InvokeListeners(this List<IMovementListener> movementListeners,float previousSpeed,float currentSpeed)
+        public static void InvokeListeners(
+            this List<IMovementListener> movementListeners, 
+            float previousSpeed,
+            float currentSpeed)
         {
             if (previousSpeed == 0 && currentSpeed != 0)
             {
@@ -27,6 +30,5 @@ namespace Model
                 }
             }
         }
-
     }
 }

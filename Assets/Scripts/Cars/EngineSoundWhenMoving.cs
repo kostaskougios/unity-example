@@ -20,12 +20,14 @@ namespace Cars
 
         public void StartMoving()
         {
-            audioSource.PlayOneShot(movingSound);
+            audioSource.clip = movingSound;
+            audioSource.Play();
         }
 
         public void StopMoving()
         {
-            audioSource.PlayOneShot(defaultAudioClip);
+            audioSource.clip = defaultAudioClip;
+            audioSource.Play();
         }
     }
 }
