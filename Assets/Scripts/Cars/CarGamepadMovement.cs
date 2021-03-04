@@ -57,25 +57,7 @@ namespace Cars
             transform.Translate(0, currentSpeed, 0);
             transform.Rotate(0, 0, turn);
 
-            InvokeListeners(previousSpeed);
-        }
-
-        private void InvokeListeners(float previousSpeed)
-        {
-            if (previousSpeed == 0 && currentSpeed != 0)
-            {
-                foreach (var listener in movementListeners)
-                {
-                    listener.StartMoving();
-                }
-            }
-            else if (currentSpeed == 0 && previousSpeed != 0)
-            {
-                foreach (var listener in movementListeners)
-                {
-                    listener.StopMoving();
-                }
-            }
+            movementListeners.InvokeListeners(previousSpeed,currentSpeed);
         }
     }
 }
