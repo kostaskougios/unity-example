@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeedMilesPerHour: 200
-  rotateSpeed: 200
-  movementListeners:
+  rotateSpeed: 150
+  movementListenerObjects:
   - {fileID: 552767826}
 --- !u!114 &264355612
 MonoBehaviour:
@@ -757,6 +757,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6178323605813483373, guid: ddeb3eebfa18fd447867c96903d2f3b5, type: 3}
+      propertyPath: movingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b1734661591e2b4f9a41d5057c7fff3, type: 3}
     - target: {fileID: 7790899008071478718, guid: ddeb3eebfa18fd447867c96903d2f3b5, type: 3}
       propertyPath: m_Name
       value: Car-Kostas
@@ -804,6 +808,10 @@ PrefabInstance:
     - target: {fileID: 7790899008071713118, guid: ddeb3eebfa18fd447867c96903d2f3b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 132.219
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851844900661641605, guid: ddeb3eebfa18fd447867c96903d2f3b5, type: 3}
+      propertyPath: m_Icon
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddeb3eebfa18fd447867c96903d2f3b5, type: 3}
