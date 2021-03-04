@@ -1,6 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Model;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Cars
 {
@@ -8,17 +12,30 @@ namespace Cars
     {
         public float maxSpeedMilesPerHour = 100;
         public float rotateSpeed = 20;
-        public Object [] movementListeners;
+
+        [FormerlySerializedAs("movementListeners")]
+        public GameObject[] movementListenerObjects;
 
         private float currentSpeed = 0;
+        private List<IMovementListener> movementListeners;
+
+        private void Start()
+        {
+            movementListeners = movementListenerObjects.ToList()
+                .ConvertAll(go => go.GetComponents<IMovementListener>().ToList())
+                .SelectMany(x => x)
+                .ToList();
+            print("Got "+movementListeners.Count+" listeners");
+        }
 
         void Update()
         {
-            float dt = Time.deltaTime;
-            float maxSpeed = maxSpeedMilesPerHour / 2000;
+            var previousSpeed = currentSpeed;
+            var dt = Time.deltaTime;
+            var maxSpeed = maxSpeedMilesPerHour / 2000;
 
             var gamepad = Gamepad.current;
-            
+
             float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed;
             float vertical = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * maxSpeedMilesPerHour;
 
@@ -40,6 +57,26 @@ namespace Cars
 
             transform.Translate(0, currentSpeed, 0);
             transform.Rotate(0, 0, turn);
+
+            InvokeListeners(previousSpeed);
+        }
+
+        private void InvokeListeners(float previousSpeed)
+        {
+            if (previousSpeed == 0 && currentSpeed != 0)
+            {
+                foreach (var listener in movementListeners)
+                {
+                    listener.StartMoving();
+                }
+            }
+            else if (currentSpeed == 0 && previousSpeed != 0)
+            {
+                foreach (var listener in movementListeners)
+                {
+                    listener.StopMoving();
+                }
+            }
         }
     }
 }

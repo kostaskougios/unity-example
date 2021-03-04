@@ -1,29 +1,31 @@
+using Model;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Cars
 {
-    public class EngineSoundWhenMoving : MonoBehaviour
+    public class EngineSoundWhenMoving : MonoBehaviour, IMovementListener
     {
-        public AudioClip engineSound;
+        public AudioClip movingSound;
 
         private AudioSource audioSource;
-        private CarGamepadMovement carGamepadMovement;
+        private AudioClip defaultAudioClip;
 
         private void Start()
         {
             audioSource = GetComponent<AudioSource>();
-            carGamepadMovement = GetComponentInParent<CarGamepadMovement>();
+            defaultAudioClip = audioSource.clip;
         }
 
-        void Update()
+        public void StartMoving()
         {
-            var gamepad = Gamepad.current;
-            var vertical = gamepad?.leftStick.ReadValue().y ?? 0;
-            if (vertical != 0)
-            {
-                audioSource.PlayOneShot(engineSound);
-            }
+            audioSource.PlayOneShot(movingSound);
+        }
+
+        public void StopMoving()
+        {
+            audioSource.PlayOneShot(defaultAudioClip);
         }
     }
 }
