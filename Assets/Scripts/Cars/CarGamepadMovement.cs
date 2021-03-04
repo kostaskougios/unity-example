@@ -23,9 +23,8 @@ namespace Cars
         private void Start()
         {
             movementListeners = movementListenerObjects.ToList()
-                .ConvertAll(go => go.GetComponents<IMovementListener>().ToList())
+                .Map(go => go.GetComponents<IMovementListener>().ToList())
                 .Flatten();
-            print("Got "+movementListeners.Count+" listeners");
         }
 
         void Update()
