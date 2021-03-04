@@ -8,21 +8,22 @@ namespace Cars
         public AudioClip engineSound;
 
         private AudioSource audioSource;
+        private CarGamepadMovement carGamepadMovement;
 
         private void Start()
         {
-            audioSource=GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
+            carGamepadMovement = GetComponentInParent<CarGamepadMovement>();
         }
 
         void Update()
         {
             var gamepad = Gamepad.current;
-            float vertical = (gamepad?.leftStick.ReadValue().y ?? 0);
+            var vertical = gamepad?.leftStick.ReadValue().y ?? 0;
             if (vertical != 0)
             {
                 audioSource.PlayOneShot(engineSound);
             }
         }
-    
     }
 }

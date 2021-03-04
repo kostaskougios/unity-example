@@ -1,3 +1,4 @@
+using Model;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +7,8 @@ namespace Cars
     public class CarGamepadMovement : MonoBehaviour
     {
         public float maxSpeedMilesPerHour = 100;
-
         public float rotateSpeed = 20;
+        public Object [] movementListeners;
 
         private float currentSpeed = 0;
 
