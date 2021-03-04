@@ -5,6 +5,7 @@ using Model;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Utils;
 
 namespace Cars
 {
@@ -23,8 +24,7 @@ namespace Cars
         {
             movementListeners = movementListenerObjects.ToList()
                 .ConvertAll(go => go.GetComponents<IMovementListener>().ToList())
-                .SelectMany(x => x)
-                .ToList();
+                .Flatten();
             print("Got "+movementListeners.Count+" listeners");
         }
 
