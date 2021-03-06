@@ -16,8 +16,8 @@ namespace Cars
 
         public GameObject[] movementListenerObjects;
 
-        public String gamepad;
-        
+        public int gamepadIndex = 0;
+
         private float currentSpeed = 0;
         private List<IMovementListener> movementListeners;
 
@@ -33,8 +33,10 @@ namespace Cars
             var previousSpeed = currentSpeed;
             var dt = Time.deltaTime;
             var maxSpeed = maxSpeedMilesPerHour / 2000;
-            
-            var gamepad = Gamepad.current;
+
+            var allGamepads = Gamepad.all;
+            if (allGamepads.Count < gamepadIndex) return;
+            var gamepad = Gamepad.all[gamepadIndex];
 
             float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed;
             float vertical = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * maxSpeedMilesPerHour;
@@ -58,7 +60,7 @@ namespace Cars
             transform.Translate(0, currentSpeed, 0);
             transform.Rotate(0, 0, turn);
 
-            movementListeners.InvokeListeners(previousSpeed,currentSpeed);
+            movementListeners.InvokeListeners(previousSpeed, currentSpeed);
         }
     }
 }
