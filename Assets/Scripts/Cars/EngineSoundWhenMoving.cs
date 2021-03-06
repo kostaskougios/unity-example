@@ -20,7 +20,6 @@ namespace Cars
 
         public void StartMoving()
         {
-            print("Playing clip");
             audioSource.clip = movingSound;
             audioSource.Play();
         }
