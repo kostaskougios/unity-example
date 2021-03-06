@@ -16,6 +16,8 @@ namespace Cars
 
         public GameObject[] movementListenerObjects;
 
+        public String gamepad;
+        
         private float currentSpeed = 0;
         private List<IMovementListener> movementListeners;
 

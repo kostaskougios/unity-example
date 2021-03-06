@@ -6,14 +6,29 @@ namespace Utils
 {
     public static class Collections
     {
-        public static List<T> Flatten<T>(this List<List<T>> l)
+        public static List<T> Flatten<T>(this IReadOnlyCollection<IReadOnlyCollection<T>> l)
         {
             return l.SelectMany(x => x).ToList();
         }
 
-        public static List<R> Map<T,R>(this List<T> l, Converter<T, R> f)
+        public static List<R> Map<T,R>(this IReadOnlyCollection<T> l, Func<T, R> f)
         {
-            return l.ConvertAll(f);
+            var r = new List<R>();
+            foreach (var a in l)
+            {
+                r.Add(f(a));
+            }
+            return r;
+        }
+
+        public static T Find<T>(this IReadOnlyCollection<T> l, Func<T, bool> f)
+        {
+            foreach (var a in l)
+            {
+                if (f(a)) return a;
+            }
+
+            return default(T);
         }
     }
 }
