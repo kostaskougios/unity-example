@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Model;
+using Players;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -14,16 +15,16 @@ namespace Cars
 
         public GameObject[] movementListenerObjects;
 
-        public int gamepadIndex = 0;
-
         private float currentSpeed = 0;
         private List<IMovementListener> movementListeners;
-
+        private ActiveGamepad activeGamepad;
         private void Start()
         {
             movementListeners = movementListenerObjects.ToList()
                 .Map(go => go.GetComponents<IMovementListener>().ToList())
                 .Flatten();
+
+            activeGamepad = GetComponent<ActiveGamepad>();
         }
 
         void Update()
@@ -32,9 +33,7 @@ namespace Cars
             var dt = Time.deltaTime;
             var maxSpeed = maxSpeedMilesPerHour / 2000;
 
-            var allGamepads = Gamepad.all;
-            if (allGamepads.Count < gamepadIndex) return;
-            var gamepad = Gamepad.all[gamepadIndex];
+            var gamepad = activeGamepad.GetGamepad();
 
             float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed;
             float vertical = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * maxSpeedMilesPerHour;
