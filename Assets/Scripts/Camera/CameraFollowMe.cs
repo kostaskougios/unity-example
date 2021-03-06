@@ -21,7 +21,7 @@ namespace Camera
 
         void LateUpdate()
         {
-            if (player != null)
+            if (player is { })
             {
                 var gamepad = Gamepad.current;
 
