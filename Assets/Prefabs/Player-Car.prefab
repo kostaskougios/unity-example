@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd407ec40393c29c8b3666ce4d5fb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingSound: {fileID: 0}
+  movingSound: {fileID: 8300000, guid: d359b09a3debbbc47ab2d58476ea1719, type: 3}
 --- !u!54 &1658590615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -198,7 +198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeedMilesPerHour: 200
   rotateSpeed: 150
-  movementListenerObjects: []
+  movementListenerObjects:
+  - {fileID: 6255070105927303068}
 --- !u!1 &8851844900661641605
 GameObject:
   m_ObjectHideFlags: 0
