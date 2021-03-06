@@ -14,7 +14,6 @@ namespace Cars
         public float maxSpeedMilesPerHour = 100;
         public float rotateSpeed = 20;
 
-        [FormerlySerializedAs("movementListeners")]
         public GameObject[] movementListenerObjects;
 
         private float currentSpeed = 0;
@@ -32,7 +31,7 @@ namespace Cars
             var previousSpeed = currentSpeed;
             var dt = Time.deltaTime;
             var maxSpeed = maxSpeedMilesPerHour / 2000;
-
+            
             var gamepad = Gamepad.current;
 
             float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed;
