@@ -1,4 +1,3 @@
-using System;
 using Camera;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +7,15 @@ namespace Players
     public class SpawnPlayer : MonoBehaviour
     {
         public GameObject player;
-        public UnityEngine.Camera playerCamera;
+        public UnityEngine.Camera playerCameraPrefab;
         public int playerNo;
 
         private bool instantiated;
 
         private void Update()
         {
-            if (!instantiated && Gamepad.all.Count > playerNo)
+            var playerCount = Gamepad.all.Count;
+            if (!instantiated && playerCount > playerNo)
             {
                 instantiated = true;
 
@@ -25,9 +25,12 @@ namespace Players
                 p.transform.position = t.position;
                 p.transform.rotation = t.rotation;
 
+                var playerCamera = Instantiate(playerCameraPrefab);
+                var camerasWidth = 1f / playerCount;
+                playerCamera.rect = new Rect(playerNo * camerasWidth, 0, camerasWidth, 1);
                 var cameraFollowMe = playerCamera.GetComponent<CameraFollowMe>();
                 cameraFollowMe.Follow(p);
-                
+
                 p.GetComponent<ActiveGamepad>().EnableGamepad(playerNo);
             }
         }
