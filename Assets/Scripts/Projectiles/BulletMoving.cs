@@ -11,18 +11,7 @@ namespace Projectiles
         void Start()
         {
             Destroy(gameObject, destroyAfter);
-        }
-
-        private bool done;
-
-        private void Update()
-        {
-            if (!done)
-            {
-                done = true;
-                var rb = GetComponent<Rigidbody>();
-                rb.AddRelativeForce(0, 0, initialForce);
-            }
+            GetComponent<Rigidbody>().AddRelativeForce(0, 0, initialForce);
         }
     }
 }
