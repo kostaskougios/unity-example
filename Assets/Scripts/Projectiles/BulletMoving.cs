@@ -1,17 +1,28 @@
+using System;
 using UnityEngine;
 
 namespace Projectiles
 {
     public class BulletMoving : MonoBehaviour
     {
-        public float initialForce = 4000;
-        public float destroyAfter = 4;
+        float initialForce = 40000;
+        float destroyAfter = 4;
 
         void Start()
         {
-            var rb = GetComponent<Rigidbody>();
-            rb.AddRelativeForce(0, 0, initialForce);
             Destroy(gameObject, destroyAfter);
+        }
+
+        private bool done;
+
+        private void Update()
+        {
+            if (!done)
+            {
+                done = true;
+                var rb = GetComponent<Rigidbody>();
+                rb.AddRelativeForce(0, 0, initialForce);
+            }
         }
     }
 }
