@@ -15,7 +15,7 @@ namespace Players
 
         private void Update()
         {
-            if (!instantiated && Gamepad.all.Count >= playerNo)
+            if (!instantiated && Gamepad.all.Count > playerNo)
             {
                 instantiated = true;
 

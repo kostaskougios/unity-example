@@ -5,7 +5,7 @@ namespace Players
 {
     public class ActiveGamepad : MonoBehaviour
     {
-        private int gamepadNumber = 0;
+        private int gamepadNumber;
 
         public void EnableGamepad(int gamepadNumber)
         {
