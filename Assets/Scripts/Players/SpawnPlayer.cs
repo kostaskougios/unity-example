@@ -21,6 +21,7 @@ namespace Players
 
                 var t = transform;
                 var p = Instantiate(player, t.parent);
+                p.name = "Player " + playerNo;
                 p.transform.position = t.position;
                 p.transform.rotation = t.rotation;
 
