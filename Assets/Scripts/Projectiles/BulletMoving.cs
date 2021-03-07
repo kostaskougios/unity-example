@@ -4,17 +4,13 @@ namespace Projectiles
 {
     public class BulletMoving : MonoBehaviour
     {
-        public float speed = 40;
+        public float initialForce = 4000;
         public float destroyAfter = 4;
-
-        void Update()
-        {
-            var dt = Time.deltaTime;
-            transform.Translate(0, 0, speed * dt);
-        }
 
         void Start()
         {
+            var rb = GetComponent<Rigidbody>();
+            rb.AddRelativeForce(0, 0, initialForce);
             Destroy(gameObject, destroyAfter);
         }
     }
