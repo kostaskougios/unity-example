@@ -40,10 +40,18 @@ namespace Cars
 
             var turn = horizontal * rotateSpeed * dt;
 
-            rb.AddRelativeForce(0, 0, vertical * 40);
-            rb.AddRelativeTorque(0, turn * 80 , 0);
+            if (vertical != 0) rb.AddRelativeForce(0, 0, vertical * 40);
+            if (turn != 0) rb.AddRelativeTorque(0, turn * 80, 0);
 
+            FixCarFlipped();
             // movementListeners.InvokeListeners(previousSpeed, currentSpeed);
+        }
+
+        private void FixCarFlipped()
+        {
+            var gamepad = activeGamepad.GetGamepad();
+            if (gamepad.yButton.wasPressedThisFrame)
+                transform.rotation = new Quaternion();
         }
     }
 }
