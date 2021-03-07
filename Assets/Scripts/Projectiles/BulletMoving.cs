@@ -4,13 +4,13 @@ namespace Projectiles
 {
     public class BulletMoving : MonoBehaviour
     {
-        public float speed = 10;
-        public float destroyAfter = 2;
+        public float speed = 40;
+        public float destroyAfter = 4;
 
         void Update()
         {
             var dt = Time.deltaTime;
-            transform.Translate(speed * dt, 0, 0);
+            transform.Translate(0, 0, speed * dt);
         }
 
         void Start()

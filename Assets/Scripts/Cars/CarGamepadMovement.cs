@@ -18,6 +18,7 @@ namespace Cars
         private float currentSpeed = 0;
         private List<IMovementListener> movementListeners;
         private ActiveGamepad activeGamepad;
+
         private void Start()
         {
             movementListeners = movementListenerObjects.ToList()
@@ -54,8 +55,8 @@ namespace Cars
 
             var turn = horizontal * rotateSpeed * dt;
 
-            transform.Translate(0, currentSpeed, 0);
-            transform.Rotate(0, 0, turn);
+            transform.Translate(0, 0, currentSpeed);
+            transform.Rotate(0, turn, 0);
 
             movementListeners.InvokeListeners(previousSpeed, currentSpeed);
         }

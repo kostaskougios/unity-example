@@ -9,9 +9,9 @@ namespace Players
     {
         public GameObject player;
         public UnityEngine.Camera playerCamera;
-        public int playerNo = 0;
+        public int playerNo;
 
-        private bool instantiated = false;
+        private bool instantiated;
 
         private void Update()
         {
