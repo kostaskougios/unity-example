@@ -1,7 +1,5 @@
 using Model;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Cars
 {

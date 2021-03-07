@@ -12,17 +12,18 @@ namespace Model
     {
         public static void InvokeListeners(
             this List<IMovementListener> movementListeners, 
-            float previousSpeed,
-            float currentSpeed)
+            float acceleration,
+            float previousAcceleration
+            )
         {
-            if (previousSpeed == 0 && currentSpeed != 0)
+            if (previousAcceleration == 0 && acceleration != 0)
             {
                 foreach (var listener in movementListeners)
                 {
                     listener.StartMoving();
                 }
             }
-            else if (currentSpeed == 0 && previousSpeed != 0)
+            else if (acceleration == 0 && previousAcceleration != 0)
             {
                 foreach (var listener in movementListeners)
                 {

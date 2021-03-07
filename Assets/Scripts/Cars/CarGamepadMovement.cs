@@ -3,7 +3,6 @@ using System.Linq;
 using Model;
 using Players;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Utils;
 
 namespace Cars
@@ -29,22 +28,26 @@ namespace Cars
             activeGamepad = GetComponent<ActiveGamepad>();
         }
 
+        private float previousAcceleration = 0;
+
         void Update()
         {
             var dt = Time.deltaTime;
 
             var gamepad = activeGamepad.GetGamepad();
 
-            float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed;
-            float vertical = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * maxSpeedMilesPerHour;
+            float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed * 80;
+            float acceleration = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * maxSpeedMilesPerHour * 40;
 
             var turn = horizontal * rotateSpeed * dt;
 
-            if (vertical != 0) rb.AddRelativeForce(0, 0, vertical * 40);
-            if (turn != 0) rb.AddRelativeTorque(0, turn * 80, 0);
+            if (acceleration != 0) rb.AddRelativeForce(0, 0, acceleration);
+            if (turn != 0) rb.AddRelativeTorque(0, turn, 0);
 
             FixCarFlipped();
-            // movementListeners.InvokeListeners(previousSpeed, currentSpeed);
+            movementListeners.InvokeListeners(acceleration, previousAcceleration);
+
+            previousAcceleration = acceleration;
         }
 
         private void FixCarFlipped()
