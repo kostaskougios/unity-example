@@ -1,3 +1,4 @@
+using Players;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,10 +13,13 @@ namespace Camera
 
         private Vector3 offset;
         private Transform player;
+        private ActiveGamepad activeGamepad;
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void Follow(GameObject followMe)
         {
             player = followMe.transform;
+            activeGamepad = followMe.GetComponent<ActiveGamepad>();
             offset = new Vector3(12, 12, 12);
         }
 
@@ -23,10 +27,8 @@ namespace Camera
         {
             if (player is { })
             {
-                var gamepad = Gamepad.current;
-
                 var dt = Time.deltaTime;
-                var dx = gamepad?.rightStick.ReadValue().x * dt * 10 ?? 0f;
+                var dx = activeGamepad.GetGamepad().rightStick.ReadValue().x * dt * 10;
                 offset = Quaternion.AngleAxis(dx * turnSpeed, Vector3.up) * offset;
                 var position = player.position;
                 transform.position = position + offset;
