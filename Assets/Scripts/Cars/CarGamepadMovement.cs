@@ -9,9 +9,6 @@ namespace Cars
 {
     public class CarGamepadMovement : MonoBehaviour
     {
-        public float maxSpeedMilesPerHour = 100;
-        public float rotateSpeed = 20;
-
         public GameObject[] movementListenerObjects;
 
         private Rigidbody rb;
@@ -36,10 +33,8 @@ namespace Cars
 
             var gamepad = activeGamepad.GetGamepad();
 
-            float horizontal = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * rotateSpeed * 80;
-            float acceleration = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * maxSpeedMilesPerHour * 40;
-
-            var turn = horizontal * rotateSpeed * dt;
+            float turn = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * 20000;
+            float acceleration = (gamepad?.leftStick.ReadValue().y ?? 0) * dt *  16000;
 
             if (acceleration != 0) rb.AddRelativeForce(0, 0, acceleration);
             if (turn != 0) rb.AddRelativeTorque(0, turn, 0);
