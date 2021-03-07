@@ -22,9 +22,7 @@ namespace Cars
             var gamepad = activeGamepad.GetGamepad();
             if (gamepad?.aButton.wasPressedThisFrame ?? false)
             {
-                var b = Instantiate(bullet);
-                b.transform.position = shootPoint.transform.position;
-                b.transform.rotation = shootPoint.transform.rotation;
+                Instantiate(bullet,shootPoint.transform);
             }
         }
     }
