@@ -1,27 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using Model;
 using UnityEngine;
 
-public class CarEarthCollisionDetection : MonoBehaviour
+namespace Cars
 {
-    public bool touchingEarth;
-
-    private void OnTriggerEnter(Collider c)
+    public class CarEarthCollisionDetection : MonoBehaviour
     {
-        if (Earth.isCollidedWithEarth(c.transform) )
+        private bool touchingEarth;
+
+        public bool TouchingEarth => touchingEarth;
+
+        private void OnTriggerEnter(Collider c)
         {
-            print("OnTriggerEnter: true");
-            touchingEarth = true;
+            if (Earth.isCollidedWithEarth(c.transform))
+            {
+                print("OnTriggerEnter: Earth");
+                touchingEarth = true;
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider c)
-    {
-        if (Earth.isCollidedWithEarth(c.transform))
+        private void OnTriggerExit(Collider c)
         {
-            print("OnTriggerEnter: false");
-            touchingEarth = false;
+            if (Earth.isCollidedWithEarth(c.transform))
+            {
+                print("OnTriggerExit: Earth");
+                touchingEarth = false;
+            }
         }
     }
 }
