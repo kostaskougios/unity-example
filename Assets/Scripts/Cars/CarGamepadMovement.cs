@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Model;
@@ -14,10 +15,12 @@ namespace Cars
         private Rigidbody rb;
         private List<IMovementListener> movementListeners;
         private ActiveGamepad activeGamepad;
+        private BoxCollider earthCollider;
 
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
+            earthCollider = GetComponent<BoxCollider>();
             movementListeners = movementListenerObjects.ToList()
                 .Map(go => go.GetComponents<IMovementListener>().ToList())
                 .Flatten();
@@ -34,14 +37,14 @@ namespace Cars
             var gamepad = activeGamepad.GetGamepad();
 
             float turn = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * 20000;
-            float acceleration = (gamepad?.leftStick.ReadValue().y ?? 0) * dt *  16000;
+            float acceleration = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * 16000;
 
             if (acceleration != 0) rb.AddRelativeForce(0, 0, acceleration);
             if (turn != 0) rb.AddRelativeTorque(0, turn, 0);
 
             FixCarFlipped();
-            movementListeners.InvokeListeners(acceleration, previousAcceleration);
 
+            movementListeners.InvokeListeners(acceleration, previousAcceleration);
             previousAcceleration = acceleration;
         }
 
