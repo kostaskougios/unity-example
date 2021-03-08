@@ -1364,7 +1364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4311484798445222047, guid: 7ff396560e5f36e95b8bdc05914f4cd8, type: 3}
-  playerCamera: {fileID: 6885571193490908254, guid: 8297d6ef648dce14386987f36b49fbe3, type: 3}
+  playerCameraPrefab: {fileID: 6885571193490908254, guid: 8297d6ef648dce14386987f36b49fbe3, type: 3}
   playerNo: 0
 --- !u!4 &895525986 stripped
 Transform:
@@ -2681,7 +2681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7790899008071478718, guid: ddeb3eebfa18fd447867c96903d2f3b5, type: 3}
-  playerCamera: {fileID: 6885571193490908254, guid: 8297d6ef648dce14386987f36b49fbe3, type: 3}
+  playerCameraPrefab: {fileID: 6885571193490908254, guid: 8297d6ef648dce14386987f36b49fbe3, type: 3}
   playerNo: 1
 --- !u!1 &1633021695
 GameObject:
