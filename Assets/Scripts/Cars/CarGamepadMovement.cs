@@ -4,6 +4,7 @@ using System.Linq;
 using Model;
 using Players;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utils;
 
 namespace Cars
@@ -17,9 +18,10 @@ namespace Cars
         private ActiveGamepad activeGamepad;
         private BoxCollider earthCollider;
         private CarEarthCollisionDetection earthCollisionDetection;
+
         private void Start()
         {
-            earthCollisionDetection=GetComponentInChildren<CarEarthCollisionDetection>();
+            earthCollisionDetection = GetComponentInChildren<CarEarthCollisionDetection>();
             rb = GetComponent<Rigidbody>();
             earthCollider = GetComponent<BoxCollider>();
             movementListeners = movementListenerObjects.ToList()
@@ -37,7 +39,7 @@ namespace Cars
 
             var gamepad = activeGamepad.GetGamepad();
 
-            float turn = (gamepad?.leftStick.ReadValue().x ?? 0) * dt * 20000;
+            float turn = ReadSteeringX(gamepad)  * dt * 20000;
             float acceleration = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * 16000;
 
             if (earthCollisionDetection.TouchingEarth)
@@ -50,6 +52,14 @@ namespace Cars
 
             movementListeners.InvokeListeners(acceleration, previousAcceleration);
             previousAcceleration = acceleration;
+        }
+
+        private float ReadSteeringX(Gamepad gamepad)
+        {
+            if (gamepad is null) return 0;
+            var leftStickX = gamepad.leftStick.ReadValue().x;
+            if(leftStickX!=0) return leftStickX;
+            return gamepad.dpad.x.ReadValue();
         }
 
         private void FixCarFlipped()
