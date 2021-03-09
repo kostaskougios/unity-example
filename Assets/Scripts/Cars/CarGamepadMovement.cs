@@ -16,14 +16,12 @@ namespace Cars
         private Rigidbody rb;
         private List<IMovementListener> movementListeners;
         private ActiveGamepad activeGamepad;
-        private BoxCollider earthCollider;
         private CarEarthCollisionDetection earthCollisionDetection;
 
         private void Start()
         {
             earthCollisionDetection = GetComponentInChildren<CarEarthCollisionDetection>();
             rb = GetComponent<Rigidbody>();
-            earthCollider = GetComponent<BoxCollider>();
             movementListeners = movementListenerObjects.ToList()
                 .Map(go => go.GetComponents<IMovementListener>().ToList())
                 .Flatten();
@@ -40,7 +38,7 @@ namespace Cars
             var gamepad = activeGamepad.GetGamepad();
 
             float turn = ReadSteeringX(gamepad)  * dt * 20000;
-            float acceleration = (gamepad?.leftStick.ReadValue().y ?? 0) * dt * 16000;
+            float acceleration = ReadSteeringY(gamepad) * dt * 16000;
 
             if (earthCollisionDetection.TouchingEarth)
             {
@@ -60,6 +58,14 @@ namespace Cars
             var leftStickX = gamepad.leftStick.ReadValue().x;
             if(leftStickX!=0) return leftStickX;
             return gamepad.dpad.x.ReadValue();
+        }
+
+        private float ReadSteeringY(Gamepad gamepad)
+        {
+            if (gamepad is null) return 0;
+            var leftStickY = gamepad.leftStick.ReadValue().y;
+            if(leftStickY!=0) return leftStickY;
+            return gamepad.dpad.y.ReadValue();
         }
 
         private void FixCarFlipped()

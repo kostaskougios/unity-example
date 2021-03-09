@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7cc51ed2a65bf4dbb22f3aa21adbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useXYAxis: 1
   movementListenerObjects:
   - {fileID: 6255070105927303068}
 --- !u!114 &8205606754344145987
