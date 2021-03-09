@@ -484,7 +484,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22238
+  m_Name: pb_Mesh22220
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2680,7 +2680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e43d6ddda84255a7f9dac6a33011ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7790899008071478718, guid: ddeb3eebfa18fd447867c96903d2f3b5, type: 3}
+  player: {fileID: 6214697472816018911, guid: 03908250c4f9395c992ce270c05f2b6d, type: 3}
   playerCameraPrefab: {fileID: 6885571193490908254, guid: 8297d6ef648dce14386987f36b49fbe3, type: 3}
   playerNo: 1
 --- !u!1 &1633021695
