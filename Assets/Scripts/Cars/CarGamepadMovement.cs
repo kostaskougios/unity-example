@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Model;
@@ -24,7 +23,7 @@ namespace Cars
             rb = GetComponent<Rigidbody>();
             movementListeners = movementListenerObjects.ToList()
                 .Map(go => go.GetComponents<IMovementListener>().ToList())
-                .Flatten();
+                .Flatten().ToList();
 
             activeGamepad = GetComponent<ActiveGamepad>();
         }
