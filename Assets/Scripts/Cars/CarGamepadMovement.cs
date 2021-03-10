@@ -37,7 +37,7 @@ namespace Cars
 
             var gamepad = activeGamepad.GetGamepad();
 
-            float turn = ReadSteeringX(gamepad) * dt * 15000;
+            float turn = ReadSteeringX(gamepad) * dt * 14000;
             float acceleration = ReadSteeringY(gamepad) * dt * 16000;
 
             if (earthCollisionDetection.TouchingEarth)

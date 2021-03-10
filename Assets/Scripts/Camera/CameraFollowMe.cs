@@ -28,10 +28,17 @@ namespace Camera
             if (player is { })
             {
                 var dt = Time.deltaTime;
-                var dx = activeGamepad.GetGamepad().rightStick.ReadValue().x * dt * 10;
-                offset = Quaternion.AngleAxis(dx * turnSpeed, Vector3.up) * offset;
+                var gp = activeGamepad.GetGamepad();
+                var rsv = gp.rightStick.ReadValue();
+                var dx = rsv.x * dt * 10;
+                var dy = rsv.y * dt * 10;
+                offset = Quaternion.AngleAxis(dx * turnSpeed, Vector3.up) * Quaternion.AngleAxis(dy * turnSpeed, Vector3.back) * offset;
                 var position = player.position;
-                transform.position = position + offset;
+                var newPos = position + offset;
+                // if (newPos.y < 50) newPos.y = 50;
+                // if (newPos.y > 56) newPos.y = 56;
+                print(newPos);
+                transform.position = newPos;
                 transform.LookAt(position);
             }
         }
