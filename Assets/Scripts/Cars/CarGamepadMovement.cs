@@ -37,7 +37,7 @@ namespace Cars
 
             var gamepad = activeGamepad.GetGamepad();
 
-            float turn = ReadSteeringX(gamepad)  * dt * 20000;
+            float turn = ReadSteeringX(gamepad) * dt * 15000;
             float acceleration = ReadSteeringY(gamepad) * dt * 16000;
 
             if (earthCollisionDetection.TouchingEarth)
@@ -56,16 +56,14 @@ namespace Cars
         {
             if (gamepad is null) return 0;
             var leftStickX = gamepad.leftStick.ReadValue().x;
-            if(leftStickX!=0) return leftStickX;
-            return gamepad.dpad.x.ReadValue();
+            return leftStickX;
         }
 
         private float ReadSteeringY(Gamepad gamepad)
         {
             if (gamepad is null) return 0;
             var leftStickY = gamepad.leftStick.ReadValue().y;
-            if(leftStickY!=0) return leftStickY;
-            return gamepad.dpad.y.ReadValue();
+            return leftStickY;
         }
 
         private void FixCarFlipped()

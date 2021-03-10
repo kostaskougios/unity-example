@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 360933266}
   - component: {fileID: 360933265}
   m_Layer: 0
-  m_Name: Terrain_(-400.0, 0.0, 400.0)
+  m_Name: wereyu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2171,7 +2171,7 @@ GameObject:
   - component: {fileID: 1337389506}
   - component: {fileID: 1337389505}
   m_Layer: 0
-  m_Name: Terrain_(-200.0, 0.0, -200.0)
+  m_Name: 8900rtytr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
