@@ -36,17 +36,13 @@ namespace Cars
 
             var gamepad = activeGamepad.GetGamepad();
 
-            float turn = ReadSteeringX(gamepad) * dt;
+            float turn = ReadSteeringX(gamepad) * dt * 14000;
             float acceleration = ReadSteeringY(gamepad) * dt * 16000;
 
             if (earthCollisionDetection.TouchingEarth)
             {
                 if (acceleration != 0) rb.AddRelativeForce(0, 0, acceleration);
-                if (turn != 0)
-                {
-                    rb.AddRelativeTorque(0, turn * 6000, 0);
-                    transform.Rotate(0, turn * 50, 0);
-                }
+                if (turn != 0) rb.AddRelativeTorque(0, turn, 0);
             }
 
             FixCarFlipped();
