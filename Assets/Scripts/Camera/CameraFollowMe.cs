@@ -1,6 +1,5 @@
 using Players;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Camera
 {
@@ -37,7 +36,6 @@ namespace Camera
                 var newPos = position + offset;
                 // if (newPos.y < 50) newPos.y = 50;
                 // if (newPos.y > 56) newPos.y = 56;
-                print(newPos);
                 transform.position = newPos;
                 transform.LookAt(position);
             }

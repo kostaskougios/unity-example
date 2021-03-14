@@ -11,7 +11,7 @@ namespace Model
     public static class MovementListener
     {
         public static void InvokeListeners(
-            this List<IMovementListener> movementListeners, 
+            this IEnumerable<IMovementListener> movementListeners, 
             float acceleration,
             float previousAcceleration
             )

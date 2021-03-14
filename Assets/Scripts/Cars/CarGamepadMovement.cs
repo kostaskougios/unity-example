@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 using Model;
 using Players;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils;
 
 namespace Cars
 {
@@ -13,7 +11,7 @@ namespace Cars
         public GameObject[] movementListenerObjects;
 
         private Rigidbody rb;
-        private List<IMovementListener> movementListeners;
+        private IEnumerable<IMovementListener> movementListeners;
         private ActiveGamepad activeGamepad;
         private CarEarthCollisionDetection earthCollisionDetection;
 
@@ -21,9 +19,10 @@ namespace Cars
         {
             earthCollisionDetection = GetComponentInChildren<CarEarthCollisionDetection>();
             rb = GetComponent<Rigidbody>();
-            movementListeners = movementListenerObjects.ToList()
-                .Map(go => go.GetComponents<IMovementListener>().ToList())
-                .Flatten().ToList();
+            movementListeners = movementListenerObjects
+                .Map(go => go.GetComponents<IMovementListener>())
+                .Flatten();
+                
 
             activeGamepad = GetComponent<ActiveGamepad>();
         }
