@@ -1,7 +1,7 @@
 using Players;
 using UnityEngine;
 
-namespace Camera
+namespace CameraUtils
 {
     /**
  * Add this on a camera to follow the followMe game object
