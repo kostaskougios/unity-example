@@ -10,8 +10,9 @@ namespace Projectiles
         private void OnCollisionEnter(Collision other)
         {
             var p = Instantiate(explosion);
-            p.transform.position = transform.position;
-            p.transform.rotation = transform.rotation;
+            var t = transform;
+            p.transform.position = t.position;
+            p.transform.rotation = t.rotation;
             Destroy(p, 2);
             Destroy(gameObject);
         }
