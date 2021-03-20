@@ -3,6 +3,7 @@ using Model;
 using Players;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Lib;
 
 namespace Cars
 {
@@ -22,7 +23,6 @@ namespace Cars
             movementListeners = movementListenerObjects
                 .Map(go => go.GetComponents<IMovementListener>())
                 .Flatten();
-                
 
             activeGamepad = GetComponent<ActiveGamepad>();
         }
