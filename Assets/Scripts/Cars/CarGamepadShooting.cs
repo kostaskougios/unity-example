@@ -1,7 +1,5 @@
-using System;
 using Players;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Cars
 {

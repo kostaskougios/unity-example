@@ -11,7 +11,7 @@ namespace Cars
 
         private void OnTriggerEnter(Collider c)
         {
-            if (Earth.isCollidedWithEarth(c.transform))
+            if (Earth.IsCollidedWithEarth(c.transform))
                 touchingEarth = true;
         }
 
@@ -22,7 +22,7 @@ namespace Cars
 
         private void OnTriggerExit(Collider c)
         {
-            if (Earth.isCollidedWithEarth(c.transform))
+            if (Earth.IsCollidedWithEarth(c.transform))
                 touchingEarth = false;
         }
     }

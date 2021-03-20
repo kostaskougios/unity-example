@@ -7,7 +7,7 @@ namespace Players
     public class SpawnPlayer : MonoBehaviour
     {
         public GameObject player;
-        public UnityEngine.Camera playerCameraPrefab;
+        public Camera playerCameraPrefab;
         public int playerNo;
 
         private bool instantiated;
