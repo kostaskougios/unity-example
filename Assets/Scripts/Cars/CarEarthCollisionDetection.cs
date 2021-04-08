@@ -5,25 +5,20 @@ namespace Cars
 {
     public class CarEarthCollisionDetection : MonoBehaviour
     {
-        private bool touchingEarth;
+        private bool touchingEarth=true;
 
         public bool TouchingEarth => touchingEarth;
 
         private void OnTriggerEnter(Collider c)
         {
-            if (Earth.IsCollidedWithEarth(c.transform))
-                touchingEarth = true;
         }
 
         private void OnTriggerStay(Collider other)
         {
-            OnTriggerEnter(other);
         }
 
         private void OnTriggerExit(Collider c)
         {
-            if (Earth.IsCollidedWithEarth(c.transform))
-                touchingEarth = false;
         }
     }
 }
